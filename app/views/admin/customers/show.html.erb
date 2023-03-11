@@ -55,6 +55,4 @@
   </tbody>
 </table>
 
-<%= link_to "編集する", edit_admin_customer_path(@customer.id) %> <span>注文履歴一覧を見る</span>
-
-<!--注文履歴一覧を見る → 注文詳細画面作成後リンクにする-->
+<%= link_to "編集する", edit_admin_customer_path(@customer.id) %> <%= link_to "注文履歴一覧を見る", admin_customer_path(@customer.id) %>
