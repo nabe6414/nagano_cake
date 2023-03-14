@@ -19,8 +19,10 @@
       <td><%= @order.payment_method %></td>
     </tr>
     <tr>
+      <% form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
       <td>注文ステータス</td>
-      <td><%= @order.status %></td>
+      <td><%= f.select :status, Orders.status.keys.to_a, {} %><%= f.submit "更新" %></td>
+      <% end %>
     </tr>
   </tbody>
 </table>
@@ -44,6 +46,7 @@
       <td><%= order_datail.amount %></td>
       <td><%= (order_datail.unit_price * order_datail.amount * 1.1).round(0).to_s(:delimited) %></td>
       <td><%= order_datail.making_status %></td>
+      <td><></td>
     </tr>
     <% @total = @total + (order_datail.unit_price * order_datail.amount * 1.1).round(0).to_s(:delimited) %>
     <% end %>
