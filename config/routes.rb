@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get '/about' => 'homes#about'
     get 'customers/confirm'
-    resources :customers, only: [:show, :edit, :udate]
+    resources :customers, only: [:show, :edit, :update]
   end
   namespace :admin do
     get '/' => 'homes#top'
