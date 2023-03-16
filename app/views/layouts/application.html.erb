@@ -14,6 +14,9 @@
     <header>
       <nav>
         <h1><a href="/">LOGO</a></h1>
+        <% if customer_signed_in? %>
+          <p>ようこそ、<%= current_customer.last_name %>さん！</p>
+        <% end %>
         <ul>
           <% if admin_signed_in? %>
           <li><%= link_to "商品一覧", admin_items_path %></li>
