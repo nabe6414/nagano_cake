@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get 'customers/my_page' => 'customers#show', as: 'customer'
     get 'customers/information/edit' => 'customers#edit', as: 'edit_customer'
     patch 'customers/information' => 'customers#update', as: 'information'
+    resources :addresses, only: [:index, :create, :edit, :update, :destroy]
   end
   namespace :admin do
     get '/' => 'homes#top'
