@@ -8,8 +8,11 @@ Rails.application.routes.draw do
     get 'customers/my_page' => 'customers#show', as: 'customer'
     get 'customers/information/edit' => 'customers#edit', as: 'edit_customer'
     patch 'customers/information' => 'customers#update', as: 'information'
-    resources :cart_items, only: [:index, :create, :update, :destroy]
-    delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
+    resources :cart_items, only: [:index, :create, :update, :destroy] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]
   end
   namespace :admin do
