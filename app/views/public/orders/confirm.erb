@@ -13,11 +13,29 @@
     <% @cart_items.each do |cart_item|%>
     <tr>
       <td><%= image_tag cart_item.item.image %><%= cart_item.item.name %></td>
-      <td><%= (cart_item.item.price * 1.1).round(0).to_s(:delimited) %></td>
+      <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
       <td><%= cart_item.amount %></td>
-      <td><%= (cart_item.item.price * cart_item.amount * 1.1).round(0).to_s(:delimited) %></td>
+      <td><%= cart_item.sub_total.to_s(:delimited) %></td>
+      <% @total += cart_item.sub_total %>
     </tr>
     <% end %>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>送料</td>
+      <td><%= @order.postage %></td>
+    </tr>
+    <tr>
+      <td>商品合計</td>
+      <td><%= @total %></td>
+    </tr>
+    <tr>
+      <td>請求金額</td>
+      <td><%= @order.postage.to_i + @total.to_i %></td>
+    </tr>
   </tbody>
 </table>
 
@@ -29,3 +47,11 @@
 〒<%= @order.postal_code %>
 <%= @order.address %>
 <%= @order.name %>
+
+<%= form_with model: @order, url: orders_path(@order.id), method: :post do |f| %>
+  <%= f.hidden_field :postal_code %>
+  <%= f.hidden_field :address %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :total_payment, :value => @order.postage.to_i + @total.to_i %>
+  <%= f.submit "注文を確定する" %>
+<% end %>
