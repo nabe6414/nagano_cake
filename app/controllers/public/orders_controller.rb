@@ -24,7 +24,18 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
     @order.save
+
+    current_customer.cart_items.each do |cart_item|
+      @order_datail = OrderDatail.new
+      @order_datail.order_id = @order.id
+      @order_datail.item_id = cart_item.item_id
+      @order_datail.unit_price = cart_item.item.price
+      @order_datail.amount = cart_item.amount
+    end
+
+    current_customer.cart_items.destroy_all
     redirect_to complete_orders_path
   end
 
@@ -33,6 +44,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    @order = current_customer.orders.find(params[:id])
   end
 
   def complete
@@ -41,6 +53,6 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:payment_method, :postal_code, :address, :name)
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :postage, :total_payment)
   end
 end
