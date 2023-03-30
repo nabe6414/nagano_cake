@@ -33,6 +33,7 @@ class Public::OrdersController < ApplicationController
       @order_datail.item_id = cart_item.item_id
       @order_datail.unit_price = cart_item.item.price
       @order_datail.amount = cart_item.amount
+      @order_datail.save
     end
 
     current_customer.cart_items.destroy_all
@@ -45,6 +46,7 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = current_customer.orders.find(params[:id])
+    @item_total = 0
   end
 
   def complete
