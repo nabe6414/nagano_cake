@@ -3,7 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>購入履歴</th>
+      <th>購入日時</th>
       <th>購入者</th>
       <th>注文個数</th>
       <th>注文ステータス</th>
@@ -12,10 +12,20 @@
   <tbody>
     <% @orders.each do |order| %>
     <tr>
-      <td><%= order.created_at %></td>
+      <td>
+        <%= link_to admin_order_path(order.id) do %>
+          <%= order.created_at.to_datetime.strftime('%Y/%m/%d %T') %>
+        <% end %>
+      </td>
       <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
-      <td><%= order.order_datail.amount %></td>
-      <td></td>
+      <td>
+        <% order.order_datails.each do |order_datail| %>
+          <% order_datail.amount %>
+          <% @order_total_amount += order_datail.amount %>
+        <% end %>
+        <%= @order_total_amount %>
+      </td>
+      <td><%= order.status_i18n %></td>
     </tr>
     <% end %>
   </tbody>

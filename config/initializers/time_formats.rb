@@ -1,1 +1,1 @@
-Time::DATE_FORMATS[:datetime_ja] = '%Y/%m/%d'
+Time::DATE_FORMATS[:datetime_ja]

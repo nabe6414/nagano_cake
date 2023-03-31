@@ -5,7 +5,7 @@
   <tbody>
     <tr>
       <td>注文日</td>
-      <td><%= @order.created_at.to_s(:datetime_ja) %></td>
+      <td><%= @order.created_at.to_date.strftime('%Y/%m/%d') %></td>
     </tr>
     <tr>
       <td>配送先</td>
