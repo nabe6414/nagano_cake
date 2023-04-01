@@ -5,6 +5,12 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
+    @order = Order.find(params[:id])
+    @order_datails = OrderDatail.where(order_id: params[:id])
+    if @order.update(order_status_params) && @order.status == "payment"
+      @order_datails.update_all(making_status: 1)
+    end
+    redirect_to admin_order_path(@order.id)
   end
 
   private
