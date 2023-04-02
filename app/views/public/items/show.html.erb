@@ -3,10 +3,14 @@
 <p><%= @item.introduction %></p>
 <p><strong>￥<%= (@item.price * 1.1).round(0).to_s(:delimited) %></strong>(税込)</p>
 
-<% if customer_signed_in? %>
+<% if customer_signed_in? && @item.is_active == true %>
   <%= form_with model: @cart_item, url: cart_items_path(@cart_item.id), method: :post do |f| %>
     <%= f.hidden_field :item_id, :value => @item.id %>
     <%= f.select :amount, *[1..10], include_blank: "個数選択" %>
     <%= f.submit "カートに入れる" %>
   <% end %>
+<% elsif customer_signed_in? && @item.is_active == false %>
+  <p>販売停止中</p>
+<% else %>
+  <%= @item.is_active ? '販売中' : '販売停止中' %>
 <% end %>
