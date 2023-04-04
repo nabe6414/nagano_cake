@@ -1,27 +1,45 @@
-<h2>商品新規登録</h2>
+<div class="container">
+  <h2 class="my-4"><span class="bg-light">商品新規登録</span></h2>
 
-<%= form_with model: @item, url: admin_items_path(@item.id), method: :post do |f| %>
-  <label>商品画像</label>
-  <%= f.file_field :image, accept: "image/*" %><br>
-
-  <label>商品名</label>
-  <%= f.text_field :name %><br>
-
-  <label>商品説明</label>
-  <%= f.text_area :introduction %><br>
-
-  <label>ジャンル</label>
-  <%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "--選択してください--" %><br>
-
-  <label>税抜価格</label>
-  <%= f.text_field :price %>円<br>
-
-  <label>販売ステータス</label>
-  <%= f.radio_button :is_active, true %>
-  <%= f.label :is_active, "販売中" %>
-  <%= f.radio_button :is_active, false %>
-  <%= f.label :is_active, "販売停止中" %><br>
-
-  <%= f.submit "新規登録" %>
-
-<% end %>
+  <div class="row">
+    <div class="col-6 mx-auto">
+    <%= form_with model: @item, url: admin_items_path(@item.id), method: :post do |f| %>
+      <table class="table table-borderless mx-auto">
+        <tbody>
+          <tr>
+            <td>商品画像</td>
+            <td><%= f.file_field :image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <td>商品名</td>
+            <td><%= f.text_field :name, class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td>商品説明</td>
+            <td><%= f.text_area :introduction, class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td>ジャンル</td>
+            <td><%= f.select :genre_id, options_from_collection_for_select(@genres, :id, :name), {include_blank: "--選択してください--"}, class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td>税抜価格</td>
+            <td><%= f.text_field :price, placeholder: "1000", class: "form-control" %></td>
+            <td>円</td>
+          </tr>
+          <tr>
+            <td>販売ステータス</td>
+            <td>
+              <%= f.radio_button :is_active, true %>
+              <%= f.label :is_active, "販売中" %>
+              <%= f.radio_button :is_active, false %>
+              <%= f.label :is_active, "販売停止中" %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row justify-content-center"><%= f.submit "新規登録", class: "btn btn-success" %></div>
+    <% end %>
+    </div>
+  </div>
+</div>
