@@ -1,32 +1,38 @@
-<h2>注文履歴一覧</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>購入日時</th>
-      <th>購入者</th>
-      <th>注文個数</th>
-      <th>注文ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @orders.each do |order| %>
-    <tr>
-      <td>
-        <%= link_to admin_order_path(order.id) do %>
-          <%= order.created_at.to_datetime.strftime('%Y/%m/%d %T') %>
-        <% end %>
-      </td>
-      <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
-      <td>
-        <% order.order_datails.each do |order_datail| %>
-          <% order_datail.amount %>
-          <% @order_total_amount += order_datail.amount %>
-        <% end %>
-        <%= @order_total_amount %>
-      </td>
-      <td><%= order.status_i18n %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <h2 class="my-4"><span class="bg-light">注文履歴一覧</span></h2>
+  
+  <div class="row">
+    <div class="col-10">
+      <table class="table">
+        <thead class="table-light">
+          <tr>
+            <th>購入日時</th>
+            <th>購入者</th>
+            <th>注文個数</th>
+            <th>注文ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+          <tr>
+            <td>
+              <%= link_to admin_order_path(order.id) do %>
+                <%= order.created_at.to_datetime.strftime('%Y/%m/%d %T') %>
+              <% end %>
+            </td>
+            <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
+            <td>
+              <% order.order_datails.each do |order_datail| %>
+                <% order_datail.amount %>
+                <% @order_total_amount += order_datail.amount %>
+              <% end %>
+              <%= @order_total_amount %>
+            </td>
+            <td><%= order.status_i18n %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
