@@ -25,7 +25,7 @@
             <%= link_to admin_item_path(item.id) do %>
             <%= item.name %>
             <% end %>
-            </td>
+          </td>
           <td><%= item.price.to_s(:delimited) %></td>
           <td><%= item.genre.name %></td>
           <td><%= item.is_active ? '販売中' : '販売停止中' %></td>
