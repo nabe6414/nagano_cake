@@ -11,16 +11,18 @@
       </div>
 
       <h2 class="my-4"><span class="bg-light">新着商品</span></h2>
-      <div class="d-flex flex-row">
-      <% @new_items.each do |item| %>
-        <div class="m-3">
-          <%= link_to item_path(item.id) do %>
-            <%= image_tag item.image %>
-          <% end %><br>
-          <%= item.name %><br>
-          <span>￥<%= item.price.to_s(:delimited)%></span>
+      <div class="contaicer">
+        <div class="row d-flex flex-row">
+        <% @new_items.each do |item| %>
+          <div class="col-3">
+            <%= link_to item_path(item.id) do %>
+              <%= image_tag item.image %>
+            <% end %><br>
+            <%= item.name %><br>
+            <span>￥<%= item.price.to_s(:delimited)%></span>
+          </div>
+        <% end %>
         </div>
-      <% end %>
       </div>
     </div>
   </div>

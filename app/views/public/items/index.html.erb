@@ -1,7 +1,16 @@
-<h2>商品一覧(全<%= @items.count %>件)</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <h2 class="my-4"><span class="bg-light">商品一覧(全<%= @items.count %>件)</span></h2>
 
-<% @items.each do |item| %>
-  <%= link_to item_path(item.id) do %><%= image_tag item.image %><% end %>
-  <%= item.name %>
-  <%= item.price %>
-<% end %>
+      <div class="d-flex flex-row">
+      <% @items.each do |item| %>
+        <div class="col-3">
+        <%= link_to item_path(item.id) do %><%= image_tag item.image %><% end %><br>
+        <%= item.name %><br>
+        ￥<%= item.price.to_s(:delimited) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
