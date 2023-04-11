@@ -9,8 +9,13 @@ class Public::AddressesController < ApplicationController
   def create
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
-    @address.save
-    redirect_to addresses_path
+    if @address.save
+      flash[:new_address] = "新しい配送先が登録されました"
+      redirect_to addresses_path
+    else
+      @addresses = current_customer.addresses
+      render :index
+    end
   end
 
   def edit
@@ -19,8 +24,12 @@ class Public::AddressesController < ApplicationController
 
   def update
     @address = Address.find(params[:id])
-    @address.update(address_params)
-    redirect_to addresses_path
+    if @address.update(address_params)
+      flash[:update_address] = "配送先が更新されました"
+      redirect_to addresses_path
+    else
+      render :edit
+    end
   end
 
   def destroy

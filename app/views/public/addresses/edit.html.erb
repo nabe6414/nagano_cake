@@ -1,4 +1,15 @@
 <div class="container">
+<% if @address.errors.any? %>
+  <h3><%= @address.errors.count %>件のエラーが発生しました</h3>
+  <ul>
+    <% @address.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+</div>
+
+<div class="container">
   <h2 class="my-4"><span class="bg-light">配送先編集</span></h2>
 
   <div class="row">

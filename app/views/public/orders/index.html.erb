@@ -18,12 +18,12 @@
           <% @orders.each do |order| %>
           <tr>
             <td class="align-middle"><%= order.created_at.to_date.strftime('%Y/%m/%d') %></td>
-            <td>
+            <td class="align-middle">
               〒<%= order.postal_code %><br>
               <%= order.address %><br>
               <%= order.name %>
             </td>
-            <td>
+            <td class="align-middle">
               <% order.order_datails.each do |order_datail| %>
                 <%= order_datail.item.name %><br>
               <% end %>
@@ -35,3 +35,6 @@
           <% end %>
         </tbody>
       </table>
+    </div>
+  </div>
+</div>

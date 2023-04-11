@@ -1,4 +1,19 @@
 <div class="container">
+  <h3 class="text-success">
+    <%= flash[:new_address] %>
+    <%= flash[:update_address] %>
+  </h3>
+<% if @address.errors.any? %>
+  <h3><%= @address.errors.count %>件のエラーが発生しました</h3>
+  <ul>
+    <% @address.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+</div>
+
+<div class="container">
   <h2 class="my-4"><span class="bg-light">配送先登録/一覧</spna></h2>
 
   <div class="row">
@@ -53,7 +68,10 @@
           <td><%= address.postal_code %></td>
           <td><%= address.address %></td>
           <td><%= address.name %></td>
-          <td class="actions text-center"><%= link_to "編集する", edit_address_path(address.id), class: "btn btn-success mr-3" %><%= link_to "削除する", address_path(address.id), method: :delete, class: "btn btn-danger" %></td>
+          <td class="actions text-center">
+            <%= link_to "編集する", edit_address_path(address.id), class: "btn btn-success mr-3" %>
+            <%= link_to "削除する", address_path(address.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+          </td>
         </tr>
         <% end %>
       </tbody>

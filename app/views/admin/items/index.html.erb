@@ -3,7 +3,10 @@
     <h2 class="col-11"><span class="bg-light">商品一覧</span></h2>
     <h2 class="col-1">
       <%= link_to new_admin_item_path do %>
-        <i class="fas fa-plus-circle" style="color: #b8bdc7;"></i>
+        <span class="fa-stack">
+          <i class="fas fa-circle fa-stack-1x" style="color: #ffffff; filter: drop-shadow(3px 3px 1px #bbb);"></i>
+          <i class="fas fa-plus fa-stack-1x" style="color: #a9a9a9;"></i>
+        </span>
       <% end %>
     </h2>
 
@@ -28,7 +31,13 @@
           </td>
           <td><%= item.price.to_s(:delimited) %></td>
           <td><%= item.genre.name %></td>
-          <td><%= item.is_active ? '販売中' : '販売停止中' %></td>
+          <td>
+            <% if item.is_active == true %>
+              <span class="text-success"><%= item.is_active ? '販売中' : '販売停止中' %>
+            <% else %>
+              <span class="text-secondary"><%= item.is_active ? '販売中' : '販売停止中' %>
+            <% end %>
+          </td>
         </tr>
         <% end %>
       </tbody>

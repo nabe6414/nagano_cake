@@ -25,19 +25,20 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    @order.save
-
-    current_customer.cart_items.each do |cart_item|
-      @order_datail = OrderDatail.new
-      @order_datail.order_id = @order.id
-      @order_datail.item_id = cart_item.item_id
-      @order_datail.unit_price = cart_item.item.price
-      @order_datail.amount = cart_item.amount
-      @order_datail.save
+    if @order.save
+      current_customer.cart_items.each do |cart_item|
+        @order_datail = OrderDatail.new
+        @order_datail.order_id = @order.id
+        @order_datail.item_id = cart_item.item_id
+        @order_datail.unit_price = cart_item.item.price
+        @order_datail.amount = cart_item.amount
+        @order_datail.save
+      end
+      current_customer.cart_items.destroy_all
+      redirect_to complete_orders_path
+    else
+      render :new
     end
-
-    current_customer.cart_items.destroy_all
-    redirect_to complete_orders_path
   end
 
   def index

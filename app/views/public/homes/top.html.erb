@@ -16,7 +16,7 @@
         <% @new_items.each do |item| %>
           <div class="col-3">
             <%= link_to item_path(item.id) do %>
-              <%= image_tag item.image %>
+              <%= image_tag item.get_image(100,100) %>
             <% end %><br>
             <%= item.name %><br>
             <span>￥<%= item.price.to_s(:delimited)%></span>
