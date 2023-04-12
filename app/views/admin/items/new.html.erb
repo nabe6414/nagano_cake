@@ -1,4 +1,15 @@
 <div class="container">
+<% if @item.errors.any? %>
+  <h3 class="text-danger"><%= @item.errors.count %>件のエラーが発生しました</h3>
+  <ul>
+    <% @item.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+</div>
+
+<div class="container">
   <h2 class="my-4"><span class="bg-light">商品新規登録</span></h2>
 
   <div class="row">

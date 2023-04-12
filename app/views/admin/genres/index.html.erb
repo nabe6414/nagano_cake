@@ -1,4 +1,17 @@
 <div class="container">
+  <h3 class="text-success"><%= flash[:new_genre] %></h3>
+  <h3 class="text-success"><%= flash[:update_genre] %></h3>
+<% if @genre.errors.any? %>
+  <h3 class="text-danger"><%= @genre.errors.count %>件のエラーが発生しました</h3>
+  <ul>
+    <% @genre.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+</div>
+
+<div class="container">
   <h2 class="my-4"><span class="bg-light">ジャンル一覧・追加</span></h2>
 
   <div class="row my-5">
