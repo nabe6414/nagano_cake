@@ -18,4 +18,12 @@ class Item < ApplicationRecord
   def with_tax_price
     (price * 1.1).floor
   end
+
+  def self.search(search)
+    if search
+      where(['name LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
 end

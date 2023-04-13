@@ -1,4 +1,10 @@
 class Admin::OrdersController < ApplicationController
+  def index
+    @customer = Customer.find(params[:customer_id])
+    @orders = @customer.orders.all
+    @order_total_amount = 0
+  end
+
   def show
     @order = Order.find(params[:id])
     @total = 0

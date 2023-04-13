@@ -5,10 +5,10 @@
     </div>
 
     <div class="col-9">
-      <h2 class="my-4"><span class="bg-light">商品一覧(全<%= @items.count %>件)</span></h2>
+      <h2 class="my-4"><span class="bg-light"><%= @genre.name%>一覧(全<%= @genre.items.count %>件)</span></h2>
 
       <div class="d-flex flex-wrap">
-      <% @items.each do |item| %>
+      <% @genre.items.each do |item| %>
         <div class="col-3">
         <%= link_to item_path(item.id) do %><%= image_tag item.get_image(100,100) %><% end %><br>
         <%= item.name %><br>
