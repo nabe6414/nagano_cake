@@ -6,15 +6,9 @@
   <h2 class="my-4"><span class="bg-light">マイページ</span></h2>
 
   <div class="row">
-    <div class="col-4">
-      <table class="table table-borderless">
-        <tbody>
-          <tr>
-            <td><strong>登録情報</strong></td>
-            <td><%= link_to "編集する", edit_customer_path(@customer.id), class: "btn btn-success" %></td>
-          </tr>
-        </tbldy>
-      </table>
+    <div class="col-12 my-2">
+      <strong>登録情報</strong></td>
+      <%= link_to "編集する", edit_customer_path(@customer.id), class: "btn btn-success ml-4" %>
     </div>
 
     <div class="col-12">
@@ -54,15 +48,21 @@
       </table>
     </div>
 
-    <div class="col-4">
-      <table class="table table-borderless">
-        <tbody>
+    <div class="col-12">
+      <table>
+        <theade>
           <tr>
-            <td><strong>配送先</strong></td>
+            <th></th>
+            <th></th>
+          </tr>
+        </theade>
+        <tbody class="table table-borderless">
+          <tr>
+            <td class="align-middle"><strong>配送先</strong></td>
             <td><%= link_to "一覧を見る", addresses_path, class: "btn btn-primary" %></td>
           </tr>
           <tr>
-            <td><strong>注文履歴</strong></td>
+            <td class="align-middle"><strong>注文履歴</strong></td>
             <td><%= link_to "一覧を見る", orders_path, class: "btn btn-primary" %></td>
           </tr>
         </tbldy>

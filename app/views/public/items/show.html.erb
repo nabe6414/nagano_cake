@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="col-2 mx-auto">
+    <div class="col-md-2 col-sm-12 mx-auto">
       <%= render 'public/shared/genre_search', genres: @genres %>
     </div>
 
-    <div class="col-4 mt-5 mx-auto">
+    <div class="col-md-5 col-sm-12 mt-5 mx-auto">
       <%= image_tag @item.image %>
     </div>
-    <div class="col-5 mt-5 mx-auto">
+    <div class="col-md-5 col-sm-12 mt-5 mx-auto">
       <h2><%= @item.name %></h2>
       <p><%= @item.introduction %></p>
       <p><strong>￥<%= @item.with_tax_price.to_s(:delimited) %></strong>(税込)</p>
