@@ -8,11 +8,11 @@ ja:
         not_payment: "入金待ち"
         payment: "入金確認"
         manufacture: "製作中"
-        shipping_preparation: "発送準備"
+        shipping_preparation: "発送準備中"
         shipped: "発送済"
     order_datail:
       making_status:
         not_manufacture: "製作不可"
-        wait_manufacture: "製作待"
+        wait_manufacture: "製作待ち"
         manufacture:  "製作中"
         completion: "製作完了"

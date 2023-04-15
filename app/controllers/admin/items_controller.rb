@@ -12,7 +12,7 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       flash[:update_item] = "新しい商品が追加されました"
-      redirect_to admin_items_path
+      redirect_to admin_item_path(@item.id)
     else
       @genres = Genre.all
       render :new
@@ -32,7 +32,7 @@ class Admin::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     if @item.update(item_params)
       flash[:update_item] = "商品情報が更新されました"
-      redirect_to admin_items_path
+      redirect_to admin_item_path(@item.id)
     else
       @genres = Genre.all
       render :edit
