@@ -99,7 +99,7 @@
       </nav>
       <div class="container d-flex justify-content-end mb-3">
         <%= form_tag items_path, :method => "get" do %>
-          <%= text_field_tag :search, "", placeholder: "Search" %>
+          <%= search_field_tag :search, "", placeholder: "Search" %>
         <% end %>
     </header>
     <%= yield %>
