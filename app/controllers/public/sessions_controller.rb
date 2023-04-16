@@ -5,6 +5,8 @@ class Public::SessionsController < Devise::SessionsController
   before_action :customer_state, only: [:create]
   before_action :authenticate_customer!
 
+
+
   # GET /resource/sign_in
   # def new
   #   super
@@ -26,6 +28,7 @@ class Public::SessionsController < Devise::SessionsController
     @customer = Customer.find_by(email: params[:customer][:email])
     return if !@customer
     if @customer.valid_password?(params[:customer][:password]) && (@customer.is_delete == true)
+      flash[:withdraw] = "既に退会たユーザーです。"
       redirect_to new_customer_registration_path
     end
   end
